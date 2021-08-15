@@ -8,13 +8,6 @@ exports.addCategory = async (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
   try {
     let newCategory = await Category.create(req.body);
-    if (req.body.menu.length > 0) {
-      req.body.menu.forEach((data, key) => {
-        data.categoryId = newCategory.id;
-      });
-      let newMenu = await Menu.bulkCreate(req.body.menu);
-      console.log(newMenu);
-    }
     await res.json({
       status: 1,
       message: "Category Added.",
@@ -28,11 +21,10 @@ exports.addCategory = async (req, res) => {
     });
   }
 };
-
 //Get All Category
 exports.getAllCategory = (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
-  Category.findAll({ include: ["menu"], order: [["id", "DESC"]] })
+  Category.findAll({ order: [["name", "ASC"]] })
     .then((result) => {
       res.json({
         status: 1,
@@ -48,28 +40,7 @@ exports.getAllCategory = (req, res) => {
       });
     });
 };
-exports.getAllCategoryDropDown = (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  //{attributes: [ ['contractTypeName', 'Name'], 'createdBy']}
-  Category.findAll({
-    attributes: ["id", "repairType", "isActive"],
-    order: [["id", "DESC"]],
-  })
-    .then((result) => {
-      res.json({
-        status: 1,
-        message: "All Category fetched successfully",
-        data: result,
-      });
-    })
-    .catch((err) => {
-      res.json({
-        status: -1,
-        message: "error occured",
-        error: err,
-      });
-    });
-};
+
 //Get Category by Id
 exports.getCategoryById = (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
@@ -92,6 +63,32 @@ exports.getCategoryById = (req, res) => {
     });
 };
 
+//Get Category by Id
+exports.getMenyByCategoryId = (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  const id = req.params.id;
+
+  Category.findByPk(id, {
+    include: ["menu"],
+    order: [["id", "ASC"]],
+  })
+    .then((result) => {
+      res.json({
+        status: 1,
+        message: "Category by Id fetched successfully",
+        data: result,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({
+        status: -1,
+        message: "error occured",
+        error: err,
+      });
+    });
+};
+
 ///Update Category
 exports.updateCategory = (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
@@ -102,6 +99,7 @@ exports.updateCategory = (req, res) => {
       res.json({
         status: 1,
         message: "Category Updated",
+        data: data,
       });
     })
     .catch((err) => {

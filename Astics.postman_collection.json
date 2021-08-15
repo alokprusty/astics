@@ -69,10 +69,16 @@
 			"name": "Add Category",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYyOTA1NDc3NiwiZXhwIjoxNjI5MDkwNzc2fQ.zOdxXdcmQO8E2cyitq1sei9JbCIC9E-NothBpL3DX20",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Pizza\",\r\n    \"menu\": [\r\n        {\r\n            \"name\": \"Cheese Pizza\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"Pizza\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -99,7 +105,13 @@
 			"name": "Get All Category",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYyOTA1NDM1OCwiZXhwIjoxNjI5MDkwMzU4fQ.Ph6R1pqcPh9r349NNy6UMrfuTv7OJiPqwmYBz6fKRRo",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3001/api/category/getAllCategory",
 					"protocol": "http",
@@ -111,6 +123,93 @@
 						"api",
 						"category",
 						"getAllCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Menu",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYyOTA1NDc3NiwiZXhwIjoxNjI5MDkwNzc2fQ.zOdxXdcmQO8E2cyitq1sei9JbCIC9E-NothBpL3DX20",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Cheese Pizza",
+							"type": "text"
+						},
+						{
+							"key": "categoryId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "categoryImage",
+							"type": "file",
+							"src": "/C:/Users/PSYCHO MEGATRON/Pictures/Screenshots/Screenshot (94).png"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/menu/addMenu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"menu",
+						"addMenu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Menu by Category",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYyOTA1NDM1OCwiZXhwIjoxNjI5MDkwMzU4fQ.Ph6R1pqcPh9r349NNy6UMrfuTv7OJiPqwmYBz6fKRRo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/api/category/getMenyByCategoryId/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"category",
+						"getMenyByCategoryId",
+						"1"
+					],
+					"query": [
+						{
+							"key": "x-access-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYyOTA1NDM1OCwiZXhwIjoxNjI5MDkwMzU4fQ.Ph6R1pqcPh9r349NNy6UMrfuTv7OJiPqwmYBz6fKRRo",
+							"disabled": true
+						}
 					]
 				}
 			},

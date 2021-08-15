@@ -5,7 +5,7 @@ function verifyToken(req, res, next) {
   var token = req.headers["x-access-token"];
   // console.log(token)
   if (!token) return res.send({ auth: false, message: "Forbidden!!" });
-  jwt.verify(token, tokenconfig.secret, function (err, decoded) {
+  jwt.verify(token, tokenconfig, function (err, decoded) {
     if (err) return res.send({ auth: false, message: "Invalid Signature!" });
     // if everything good, save to request for use in other routes
     req.userId = decoded.id;

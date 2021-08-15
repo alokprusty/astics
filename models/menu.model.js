@@ -14,6 +14,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING(50),
         allowNull: false,
       },
+      fileUrl: {
+        type: Sequelize.STRING(255),
+        allowNull: true,
+      },
       isActive: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

@@ -6,6 +6,7 @@ const cors = require("cors");
 app.use(cors()); // For allowing Cross-Origin-Resource-Sharing
 app.options("*", cors()); // For allowing Cross-Origin-Resource-Sharing for every type of HTTP Method
 app.use(express.json({ limit: "25mb", extended: true }));
+app.use("/images", express.static(__dirname + "/uploads")); //Serves resources from public folder
 
 //////////////////////*****Sequelize Start*****//////////////////////////
 const db = require("./models");
@@ -17,6 +18,7 @@ const db = require("./models");
 
 require("./routes/user.route")(app); //Importing User Routes
 require("./routes/category.route")(app); //Importing Category Routes
+require("./routes/menu.route")(app); //Importing Menu Routes
 
 app.get("/demo", (req, res) => {
   res.send("Demo Working in ISO Tank");
