@@ -10,9 +10,9 @@ app.use("/images", express.static(__dirname + "/uploads")); //Serves resources f
 
 //////////////////////*****Sequelize Start*****//////////////////////////
 const db = require("./models");
-// db.sequelize.sync({ force: false }).then(() => {
-//   console.log("Drop and re-sync db.");
-// });
+db.sequelize.sync({ force: false }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 //////////////////////*****Sequelize End*****//////////////////////////
 
